@@ -8,10 +8,10 @@ to make project tasks like running the emulator and installing your theme
 super simple.
 
 ## Getting Started
+First, [download this template](https://github.com/chrislawlor/mdm-project-template/archive/master.zip). 
 
-You probably want to download this template as a zipfile or tarball, since
-you'll want to create a new Git repository for your theme. Extract the project
-archive to the directory of your choice, and open a terminal in that directory.
+Extract the project archive to the directory of your choice, and open a terminal in that directory.
+
 
 In your terminal, run:
 
@@ -38,7 +38,7 @@ generates the ``theme.info`` file which contains metadata used by MDM:
 If you don't have them already, you'll need to install some dependencies for
 working with LESS:
 
-1. [Node.js](http://nodejs.org), for ``npm``
+1. [Node.js](http://nodejs.org)
 2. The LESS compiler: ``npm install -g less``
 3. The watchr gem: ``gem install watchr``
 
@@ -86,6 +86,6 @@ And your theme will be installed to ``/usr/share/mdm/html-themes/``
 
 ## Distributing Your Theme
 
-Your ``src`` file is your theme, distribute as you like. You might opt to also
-distribute your Makefile, which would allow users to use ``make install`` to
+Your ``src`` file is your theme, distribute as you like. You might also choose 
+to distribute your Makefile, which would allow users to use ``make install`` to
 install the theme on their system.
