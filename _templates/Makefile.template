@@ -1,0 +1,26 @@
+#
+# Compile LESS to CSS. Requires lessc (npm install -g less)
+#
+less:
+	lessc -x --verbose --line-numbers=comments src/less/theme.less > src/css/theme.css
+
+
+#
+# Watch LESS files. Requires watchr ( gem install watchr )
+#
+watch:
+	echo "Watching less files...."; \
+	watchr -e "watch('src/less/.*\.less') { system 'make' }"
+
+#
+# Install the theme to your system
+#
+install:
+	sudo cp -R src /usr/share/mdm/html-themes/%(install_folder)s
+
+
+#
+# Start the emulator
+#
+emulator: less
+	mdm-theme-emulator %(index_file)s

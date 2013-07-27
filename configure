@@ -1,0 +1,55 @@
+#!/usr/bin/python
+import os
+
+
+TEMPLATES = (
+    ('Makefile.template', 'Makefile'),
+    ('theme.info.template', 'src/theme.info'),
+)
+
+
+PROMPTS = (
+    ('name', 'What is the theme name?'),
+    ('description', 'Enter a short theme description:'),
+)
+
+
+def clean():
+    for template_name, outfile_name in TEMPLATES:
+        try:
+            os.remove(outfile_name)
+        except OSError:
+            # file doesn't exist
+            pass
+
+
+def get_context():
+    context = {}
+    for varname, prompt in PROMPTS:
+        context[varname] = raw_input("{0} ".format(prompt))
+
+    # we need a spaceless version of the name to use an in install folder
+    context['install_folder'] = context['name'].replace(" ", "-").lower()
+
+    # MDM theme emulator needs an absolute path
+    project_root = os.path.abspath(os.path.dirname(__file__))
+    context['index_file'] = os.path.join(project_root, 'src', 'index.html')
+    return context
+
+
+def render_templates(context):
+    for template_name, outfile_name in TEMPLATES:
+        with open(os.path.join('_templates', template_name), 'r') as template:
+            with open(outfile_name, 'w') as output:
+                for line in template.readlines():
+                    output.write(line % context)
+
+
+def main():
+    clean()
+    context = get_context()
+    render_templates(context)
+
+
+if __name__ == "__main__":
+    main()

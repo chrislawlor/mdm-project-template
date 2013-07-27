@@ -1,0 +1,5 @@
+[Theme]
+Encoding=UTF-8
+Name=%(name)s
+Description=%(description)s
+Screenshot=screen.jpg
